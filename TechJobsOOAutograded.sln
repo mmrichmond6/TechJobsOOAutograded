@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.810.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechJobsOOAutograded", "TechJobsOOAutograded\TechJobsOOAutograded.csproj", "{55D93435-08C0-4B4D-A130-023D2B8A6E74}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechJobsOOAutogradedTests", "TechJobsOOAutogradedTests\TechJobsOOAutogradedTests.csproj", "{B4F1690D-61C0-4C53-AD11-273B3D6E565A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{55D93435-08C0-4B4D-A130-023D2B8A6E74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55D93435-08C0-4B4D-A130-023D2B8A6E74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55D93435-08C0-4B4D-A130-023D2B8A6E74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55D93435-08C0-4B4D-A130-023D2B8A6E74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4F1690D-61C0-4C53-AD11-273B3D6E565A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4F1690D-61C0-4C53-AD11-273B3D6E565A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4F1690D-61C0-4C53-AD11-273B3D6E565A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4F1690D-61C0-4C53-AD11-273B3D6E565A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DDD63697-06E1-4360-9D52-E8D5F52E5746}
+	EndGlobalSection
+EndGlobal
