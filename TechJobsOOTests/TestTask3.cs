@@ -33,10 +33,8 @@ namespace TechJobsOOTests
                 }
             }
 
-            Console.WriteLine(existsCheck);
             //verify
             Assert.AreEqual(existsCheck, nameCheck, "No Argument Constructor exists");
-
         }
 
         [TestMethod] //2
@@ -58,7 +56,6 @@ namespace TechJobsOOTests
             List<string> conNames = new List<string>();
             string nameCheck = "Second Constructor";
             string existsCheck = "";
-
             
             foreach (var name in constructorInfos)
             {
@@ -73,12 +70,13 @@ namespace TechJobsOOTests
                     break;
                 }
             }
+
             //verify
             Assert.AreEqual(existsCheck, nameCheck, "Second Constructor Test");
         }
 
         [TestMethod] //4
-        public void Test_JobClass_Has_Accessors_SetUp()
+        public void Test_JobClass_Has_Accessors()
         {
             //setup
             Job testJob1 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
