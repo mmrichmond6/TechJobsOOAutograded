@@ -128,7 +128,6 @@ namespace TechJobsOOTests
             int localCount = mBody.LocalVariables.Count;
 
             //verify setup
-            Console.WriteLine(localCount);
             Assert.IsTrue(localCount > 0, "GetHashCode method setup");
 
             //verify output

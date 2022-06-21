@@ -2,7 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TechJobsOO;
 using System.Reflection;
-
+using System.Collections.Generic;
 
 namespace TechJobsOOTests
 {
@@ -14,24 +14,45 @@ namespace TechJobsOOTests
 
     // Testing Location --------------------------------------------------------
 
-        //Run after student has completed Location class tasks
-
         [TestMethod] //1
-                     //2nd constructor takes a string value - should not be null
         public void Test_Second_Location_Constructor_Exists()
         { 
             Type locType = typeof(Location);
-            Console.WriteLine(locType);
             ConstructorInfo[] constructorInfos = locType.GetConstructors();
+            List<string> conNames = new List<string>();
+            string nameCheck = "No Arg Constructor";
+            string existsCheck = "";
 
-            MemberInfo[] memberInfos = locType.GetMembers();
-            int memberLength = memberInfos.Length;
+            foreach (var name in constructorInfos)
+            {
+                conNames.Add(name.ToString());
+
+            }
+
+            foreach (string name in conNames)
+            {
+                if (name.Equals("Void .ctor()"))
+                {
+                    existsCheck += "No Arg Constructor";
+                    break;
+                }
+            }
+
             //verify
-            Assert.AreEqual(memberLength, 11);
+            Assert.AreEqual(existsCheck, nameCheck, "No Argument Constructor exists");
         }
 
         [TestMethod] //2
-                     //Testing if we can update the Value
+        public void Test_No_Arg_Constructor_Sets_Unique_Id()
+        {
+            Location testlocation1 = new Location();
+            Location testlocation2 = new Location();
+
+            Assert.AreNotEqual(testlocation1, testlocation2, "Unique Id Test");
+            Assert.AreEqual(testlocation1, testlocation1, "Should have same Id");
+        }
+
+        [TestMethod] //3
         public void Test_Second_Location_Constructor_Initializes_Value()
         {
             //setup
@@ -39,42 +60,29 @@ namespace TechJobsOOTests
             Location testLocation2 = new Location("St. Louis");
 
             //verify
-            Assert.AreEqual("Desert", testLocation.Value);
-            Assert.AreEqual("St. Louis", testLocation2.Value);
-
-
-            //For QA:  I'd like to explore the reflection namespace more for this test
-            //these tests currently work, but not sure if they are robust enough
-            //tests 2-6
-            //CF
+            Assert.AreEqual("Desert", testLocation.Value, "Is Value set at time of declaration?");
+            Assert.AreEqual("St. Louis", testLocation.Value = "St. Louis", "Able to update value?");
         }
 
-        [TestMethod] //3
-                     //Testing if ': this()' initalizes the location's id
+        [TestMethod] //4
         public void Test_Second_Location_Constructor_Initializes_Id()
         {
             //setup
             Location testLocation = new Location("Desert");
 
             //verify
-            Assert.AreEqual(3, testLocation.Id);
-            Assert.IsNotNull(testLocation.Id);
+            Assert.AreEqual(5, testLocation.Id, "Second constructor able to update Id");
+            Assert.IsNotNull(testLocation.Id, "Second constructor passes value to Id");
         }
 
-    // Testing CoreCompetency --------------------------------------------------
 
-        [TestMethod] //4
-        public void Test_Core_Competency_Has_Value_Accessors()
-        {
-            CoreCompetency testComp = new CoreCompetency("Persistence");
-
-            Assert.AreEqual("Persistence", testComp.Value);
-        }
-
-        [TestMethod]
-        public void Test_CoreCompetency_Has_Id_Getter_SetUp()
+        [TestMethod] //5
+        public void Test_CoreCompetency_Accessor_SetUp()
         {
             //setup
+            CoreCompetency testComp = new CoreCompetency("Persistence");
+            CoreCompetency testComp2 = new CoreCompetency("Persistence");
+
             Type ccType = typeof(CoreCompetency); 
             MemberInfo[] memberInfos = ccType.GetMembers();
             string nameCheck = "get_Id";
@@ -89,23 +97,18 @@ namespace TechJobsOOTests
                     break;
                 }
             }
+
+            //verify able to set value
+            Assert.AreEqual("Persistence", testComp.Value, "CoreComp has set-able Value");
+
             //verify
-            Assert.AreEqual("true", existsCheck);
-        }
+            Assert.AreEqual("true", existsCheck, "CoreComp has getter set up correctly");
 
-        [TestMethod] //5b
-                     //Verifying that Getter works for Id by creating second CoreComp object
-        public void Test_CoreCompetency_Has_Id_Getter_Output()
-        {
-            CoreCompetency testComp = new CoreCompetency("Persistence");
-            CoreCompetency testComp2 = new CoreCompetency("Persistence");
-
-            //testComp.Id = 5  & testComp2.Id should be 6
-            Assert.AreNotEqual(testComp.Id, testComp2.Id);
+            //verify
+            Assert.AreNotEqual(testComp.Id, testComp2.Id, "able to get ids for CoreComp objects");
         }
 
         [TestMethod] //6
-                     //should not be able to set the Id - getter only
         public void Test_CoreCompetency_Has_No_Id_Setter_SetUp()
         {
             Type ccType = typeof(CoreCompetency);
@@ -123,92 +126,66 @@ namespace TechJobsOOTests
                 }
             }
             //verify
-            Assert.AreEqual("false", existsCheck);
+            Assert.AreEqual("false", existsCheck, "CoreComp should not have a setter");
         }
 
-        // Testing PositionType ----------------------------------------------------
-
-
-        // testing the ToString, Equals, and GetHashCode methods
-
-        [TestMethod] //7a
+        [TestMethod] //7
         public void Test_PositionType_Equals_Method_SetUp()
         {
-            //Get method body information
+            // set up
+            PositionType testPosition = new PositionType("Quality Control");
+            PositionType testPosition2 = new PositionType("Quality Control");
+
             MethodInfo mInfo = typeof(PositionType).GetMethod("Equals");
             MethodBody mBody = mInfo.GetMethodBody();
 
-            //isolate testable elements
             int lviCount = mBody.LocalVariables.Count;
             string mName = mInfo.ReflectedType.Name;
             string mGBD = mInfo.GetBaseDefinition().ReflectedType.Name;
 
-            //verify
-            Assert.AreNotEqual(mName, mGBD);
-            Assert.AreEqual(lviCount, 2);
-        }
+            //verify setup
+            Assert.AreNotEqual(mName, mGBD, "Equals method belongs to PositionType class");
+            Assert.AreEqual(lviCount, 2, "Equals method has 2 local variables");
 
-        [TestMethod] //7b
-        public void Test_PositionType_Equals_Method_Output()
+            //verify output
+            Assert.AreEqual(testPosition, testPosition, "Objects with Same ID are Equal");
+            Assert.AreNotEqual(testPosition, testPosition2, "Objects with different ID not Equal");
+        }
+        [TestMethod] //8
+        public void Test_PositionType_HashCode_SetUp()
         {
             // set up
             PositionType testPosition = new PositionType("Quality Control");
             PositionType testPosition2 = new PositionType("Quality Control");
 
-            Assert.AreEqual(testPosition, testPosition);
-            Assert.AreNotEqual(testPosition, testPosition2);
-        }
-
-        [TestMethod] //8a
-                     // should have 1 local variable once created
-        public void Test_PositionType_HashCode_SetUp()
-        {
-            //setup
             MethodInfo mInfo = typeof(PositionType).GetMethod("GetHashCode");
             MethodBody mBody = mInfo.GetMethodBody();
             int localCount = mBody.LocalVariables.Count;
 
-            //verify
-            Assert.IsTrue(localCount > 0);
+            //verify setup
+            Assert.IsTrue(localCount > 0, "GetHashCode method setup");
+
+            //verify output
+            Assert.AreNotEqual(testPosition.GetHashCode(), testPosition2.GetHashCode(), "GetHashCode output test");
         }
 
-        [TestMethod] //8b
-                    // should create unique hashcode for each object
-        public void Test_PositionType_GetHashCode_Method_Output()
-        {
-            // set up
-            PositionType testPosition = new PositionType("Quality Control");
-            PositionType testPosition2 = new PositionType("Quality Control");
 
-            //verify 
-            Assert.AreNotEqual(testPosition.GetHashCode(), testPosition2.GetHashCode());
-        }
-
-        [TestMethod] //9a
-                     // should have 1 local variable once created
+        [TestMethod] //9
         public void Test_PositionType_ToString_SetUp()
         {
             //setup
+            PositionType testPosition = new PositionType("Quality Control");
+
             MethodInfo mInfo = typeof(PositionType).GetMethod("ToString");
             MethodBody mBody = mInfo.GetMethodBody();
             int localCount = mBody.LocalVariables.Count;
 
-            //verify
-            Assert.IsTrue(localCount > 0);
+            //verify setup
+            Assert.IsTrue(localCount > 0, "ToString method set up with at least 1 local variable");
+
+            //verify output
+            Assert.AreEqual(testPosition.Value.ToString(), "Quality Control", "ToString returns same output as set value");
         }
-
-        [TestMethod] //9b
-                        //returning the value only at this time
-        public void Test_PositionType_ToString_Method_Output()
-        {
-            // set up
-            PositionType testPosition = new PositionType("Quality Control");
-
-            Assert.AreEqual(testPosition.Value.ToString(), "Quality Control");
-            Assert.AreNotEqual(testPosition.Value.ToString(), "Testing To String Method");
-        }
-
-
     }
 }
 
