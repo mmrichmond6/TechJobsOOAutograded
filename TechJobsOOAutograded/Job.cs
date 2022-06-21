@@ -3,7 +3,6 @@ namespace TechJobsOO
 {
     public class Job
     {
-
         public int Id { get; }
         private static int nextId = 1;
 
@@ -23,6 +22,7 @@ namespace TechJobsOO
 
         public Job(string name, Employer employerName, Location employerLocation, PositionType jobType, CoreCompetency jobCoreCompetency) : this()
         {
+            Name = name;
             EmployerName = employerName;
             EmployerLocation = employerLocation;
             JobType = jobType;
@@ -30,6 +30,16 @@ namespace TechJobsOO
         }
         // TODO: Generate Equals() and GetHashCode() methods.
 
+        public override bool Equals(object obj)
+        {
+            return obj is Job job &&
+                   Id == job.Id;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Id);
+        }
 
     }
 }

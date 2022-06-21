@@ -9,8 +9,8 @@ namespace TechJobsOOTests
     [TestClass]
     public class TestTask3
     {
-        [TestMethod]    //1a
-        public void Test_JobClass_Has_No_Arg_Constructor()
+        [TestMethod]    //1
+        public void Test_JobClass_Has_No_Arg_Constructor() 
         {
             Type jobType = typeof(Job);
             ConstructorInfo[] constructorInfos = jobType.GetConstructors();
@@ -35,21 +35,21 @@ namespace TechJobsOOTests
 
             Console.WriteLine(existsCheck);
             //verify
-            Assert.AreEqual(existsCheck, nameCheck);
+            Assert.AreEqual(existsCheck, nameCheck, "No Argument Constructor exists");
 
         }
 
-        [TestMethod]
-        public void Test_No_Arg_Constructor_Sets_Id()
+        [TestMethod] //2
+        public void Test_No_Arg_Constructor_Sets_Unique_Id()
         {
             Job testJob1 = new Job();
             Job testJob2 = new Job();
 
-            Assert.AreNotEqual(testJob1, testJob2);
-            Assert.AreEqual(testJob2, testJob2);
+            Assert.AreNotEqual(testJob1, testJob2, "Unique Id Test");
+            Assert.AreEqual(testJob2, testJob2, "Should have same Id");
         }
 
-        [TestMethod]  //2
+        [TestMethod]  //3
         public void Test_JobClass_Has_Second_Constructror()
         {
             //setup
@@ -59,6 +59,7 @@ namespace TechJobsOOTests
             string nameCheck = "Second Constructor";
             string existsCheck = "";
 
+            
             foreach (var name in constructorInfos)
             {
                 conNames.Add(name.ToString());
@@ -73,51 +74,68 @@ namespace TechJobsOOTests
                 }
             }
             //verify
-            Assert.AreEqual(existsCheck, nameCheck);
+            Assert.AreEqual(existsCheck, nameCheck, "Second Constructor Test");
         }
 
-        //Test what second constructor contains ??
-
-
-        [TestMethod]    //3a
+        [TestMethod] //4
         public void Test_JobClass_Has_Accessors_SetUp()
         {
-            //See task 2 for ideas
+            //setup
+            Job testJob1 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+            Job testJob2 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+
+            //verify 
+            Assert.AreEqual(testJob1.Name,  "Product tester", "Testing Job Name");
+            Assert.AreEqual(testJob1.EmployerName.ToString(), "ACME", "Testing EmployerName Value");
+            Assert.AreEqual(testJob1.EmployerLocation.ToString(), "Desert", "Testing EmployerLocation Value");
+            Assert.AreEqual(testJob1.JobType.ToString(), "Quality control", "Testing JobType Value");
+            Assert.AreEqual(testJob1.JobCoreCompetency.ToString(), "Persistence", "Testing JobCoreCompetency Value");
+            Assert.AreNotEqual(testJob1.Id, testJob2.Id, "Job objects should have unique ids");
         }
 
-        [TestMethod]    //3b
-        public void Test_JobClass_Accessors_Output()
-        {
-            //See task 2 for ideas
-        }
 
-
-        [TestMethod]    //4a
+        [TestMethod] //5
         public void Test_Equals_Method_Setup()
         {
-            //See task 2 for ideas
+            //setup
+            Job testJob1 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+            Job testJob2 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+
+            MethodInfo mInfo = typeof(Job).GetMethod("Equals");
+            MethodBody mBody = mInfo.GetMethodBody();
+
+            int lviCount = mBody.LocalVariables.Count;
+            string mName = mInfo.ReflectedType.Name;
+            string mGBD = mInfo.GetBaseDefinition().ReflectedType.Name;
+
+            //verify setup
+            Assert.AreNotEqual(mName, mGBD, "Equals method belongs to Job Class");
+            Assert.AreEqual(lviCount, 2, "Equals method has 2 local variables");
+
+            //verify output
+            Assert.AreEqual(testJob1, testJob1, "Objects with same ID are equal");
+            Assert.AreNotEqual(testJob1, testJob2, "Objects with different ID are not equal");
         }
 
-        [TestMethod]  //4b
-        public void Test_Equals_Method_Output()
-        {
-            //See task 2 for ideas
-        }
-
-        [TestMethod]  //5a
+       
+        [TestMethod]  //6
         public void Test_GetHashCode_Setup()
         {
-            //See task 2 for ideas
+            //setup
+            Job testJob1 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+            Job testJob2 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+
+            MethodInfo mInfo = typeof(Job).GetMethod("GetHashCode");
+            MethodBody mBody = mInfo.GetMethodBody();
+            int localCount = mBody.LocalVariables.Count;
+
+            //verify setup
+            Console.WriteLine(localCount);
+            Assert.IsTrue(localCount > 0, "GetHashCode method setup");
+
+            //verify output
+            Assert.AreNotEqual(testJob1.GetHashCode(), testJob2.GetHashCode(), "GetHashCode output test");
         }
-
-        [TestMethod]  //5b
-        public void Test_GetHashCode_Output()
-        {
-            //See task 2 for ideas
-        }
-
-
-
 
     }
 }
