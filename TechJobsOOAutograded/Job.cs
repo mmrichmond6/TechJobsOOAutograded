@@ -3,6 +3,7 @@ namespace TechJobsOO
 {
     public class Job
     {
+
         public int Id { get; }
         private static int nextId = 1;
 
@@ -14,6 +15,21 @@ namespace TechJobsOO
 
         // TODO: Add the two necessary constructors.
 
+        public Job()
+        {
+            Id = nextId;
+            nextId++;
+        }
+
+        public Job(string name, Employer employerName, Location employerLocation, PositionType jobType, CoreCompetency jobCoreCompetency) : this()
+        {
+            EmployerName = employerName;
+            EmployerLocation = employerLocation;
+            JobType = jobType;
+            JobCoreCompetency = jobCoreCompetency;
+        }
         // TODO: Generate Equals() and GetHashCode() methods.
+
+
     }
 }
