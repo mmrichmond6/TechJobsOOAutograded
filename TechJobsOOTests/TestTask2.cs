@@ -93,7 +93,6 @@ namespace TechJobsOOTests
                 if (mCheck.Name == nameCheck)
                 {
                     existsCheck += "true";
-                    Console.WriteLine(existsCheck);
                     break;
                 }
             }
@@ -102,7 +101,7 @@ namespace TechJobsOOTests
             Assert.AreEqual("Persistence", testComp.Value, "CoreComp has set-able Value");
 
             //verify
-            Assert.AreEqual("true", existsCheck, "CoreComp has getter set up correctly");
+            Assert.AreEqual("true", existsCheck, "CoreComp getter exists");
 
             //verify
             Assert.AreNotEqual(testComp.Id, testComp2.Id, "able to get ids for CoreComp objects");
@@ -121,7 +120,6 @@ namespace TechJobsOOTests
                 if (mCheck.Name != nameCheck)
                 {
                     existsCheck += "false";
-                    Console.WriteLine(existsCheck);
                     break;
                 }
             }
