@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TechJobsTests;
 
@@ -19,44 +21,36 @@ namespace TechJobsOOTests
         [TestMethod] //1
         public void Test_For_TestSettingJobId()
         {
-           
+            Type testType = typeof(TestSettingJobId);
             MemberInfo[] memberInfos = testType.GetMembers();
 
-            List<object> checkThisOut = new List<object>();
-            string testExists = "";
-            string assertExists = "";
+            string nameCheck = "TestSettingJobIdTest";
+            
+            //this is using a separate unit test class to see if we can isolate the assert
+            //maybe?
 
-            foreach( var mInfo in memberInfos)
+            for(int i = 0; i < memberInfos.Length; i++)
             { 
-                
-                if(mInfo.Name == "TestSettingJobId")
+                if (memberInfos[i].Name == nameCheck)
                 {
-                    //not quite working...
-                    //trying to crack into this method to count tests (> 0)
-                    checkThisOut.Add(mInfo);
-                    if(checkThisOut.Count > 0)
-                    {
-                        testExists += "true";
-                        assertExists += "true";
-
-                        break;
-                    }
+                    string memberList = memberInfos[i].ToString();
+                    Console.WriteLine(memberList);
+                    //break;
+                }
+                for (int j = 0; j < memberInfos.Length; j++)
+                {
+                    string memberType = (memberInfos[i].MemberType.ToString());
+                    Console.WriteLine(memberType);
                 }
             }
-
-
-            Assert.AreEqual("true", testExists, "'TestSettingJobId does not exist");
-            Assert.IsTrue(assertExists == "true");
-
-
-    
         }
-    
+
+       
 
         [TestMethod] 
         public void TestJobConstructorSetsAllFields()
         {
-            Type testType = typeof(TechJobsTests.JobTests);
+            Type testType = typeof(JobTests);
             MemberInfo[] memberInfos = testType.GetMembers();
 
             string nameCheck = "TestJobConstructorSetsAllFields";
@@ -79,7 +73,7 @@ namespace TechJobsOOTests
         [TestMethod] 
         public void TestJobsForEquality()
         {
-            Type testType = typeof(TechJobsTests.JobTests);
+            Type testType = typeof(JobTests);
             MemberInfo[] memberInfos = testType.GetMembers();
 
             string nameCheck = "TestJobsForEquality";
@@ -102,7 +96,7 @@ namespace TechJobsOOTests
         [TestMethod] 
         public void TestToStringStartsAndEndsWithNewLine()
         {
-            Type testType = typeof(TechJobsTests.JobTests);
+            Type testType = typeof(JobTests);
             MemberInfo[] memberInfos = testType.GetMembers();
 
             string nameCheck = "TestToStringStartsAndEndsWithNewLine";
@@ -125,7 +119,7 @@ namespace TechJobsOOTests
         [TestMethod] 
         public void TestToStringContainsCorrectLabelsAndData()
         {
-            Type testType = typeof(TechJobsTests.JobTests);
+            Type testType = typeof(JobTests);
             MemberInfo[] memberInfos = testType.GetMembers();
 
             string nameCheck = "TestToStringContainsCorrectLabelsAndData";
@@ -147,7 +141,7 @@ namespace TechJobsOOTests
         [TestMethod]
         public void TestToStringHandlesEmptyField()
         {
-            Type testType = typeof(TechJobsTests.JobTests);
+            Type testType = typeof(JobTests);
             MemberInfo[] memberInfos = testType.GetMembers();
 
             string nameCheck = "TestToStringHandlesEmptyField";
