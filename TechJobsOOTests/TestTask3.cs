@@ -107,8 +107,8 @@ namespace TechJobsOOTests
             string mGBD = mInfo.GetBaseDefinition().ReflectedType.Name;
 
             //verify setup
-            Assert.AreNotEqual(mName, mGBD, "Equals method belongs to Job Class");
-            Assert.AreEqual(lviCount, 2, "Equals method has 2 local variables");
+            Assert.AreNotEqual(mName, mGBD, "Equals method doesn't belong to Job Class");
+            Assert.AreEqual(lviCount, 2, "Equals method doesn't have correct number of local variables");
 
             //verify output
             Assert.AreEqual(testJob1, testJob1, "Objects with same ID are equal");
@@ -128,7 +128,7 @@ namespace TechJobsOOTests
             int localCount = mBody.LocalVariables.Count;
 
             //verify setup
-            Assert.IsTrue(localCount > 0, "GetHashCode method setup");
+            Assert.IsTrue(localCount > 0, "GetHashCode not method setup");
 
             //verify output
             Assert.AreNotEqual(testJob1.GetHashCode(), testJob2.GetHashCode(), "GetHashCode output test");

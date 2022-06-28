@@ -27,9 +27,8 @@ namespace TechJobsTests
         [TestMethod]
         public void TestSettingJobId()
         {
-            //Assert.IsTrue(job1.Id == job2.Id && (job1.Id + 1) == job2.Id);
-            Assert.IsFalse(job1.Id! == job2.Id);
-            Console.WriteLine("Test");
+            Assert.IsTrue(job1.Id != job2.Id && (job1.Id + 1) == job2.Id);
+            Assert.IsFalse(job1.Id == job2.Id);
         }
 
 
@@ -53,48 +52,48 @@ namespace TechJobsTests
 
 
         // task 5 ------------
-        //[TestMethod]
-        //public void TestToStringStartsAndEndsWithNewLine()
-        //{
-        //    string testString = job3.ToString();
-        //    char firstChar = testString[0];
-        //    char lastChar = testString[testString.Length - 1];
-        //    Assert.IsTrue(firstChar == lastChar);
-        //}
+        [TestMethod]
+        public void TestToStringStartsAndEndsWithNewLine()
+        {
+            string testString = job3.ToString();
+            char firstChar = testString[0];
+            char lastChar = testString[testString.Length - 1];
+            Assert.IsTrue(firstChar == lastChar);
+        }
 
 
-        //[TestMethod]
-        //public void TestToStringContainsCorrectLabelsAndData()
-        //{
-        //    string testOutput = Environment.NewLine + $"ID: {job3.Id}" +
-        //        Environment.NewLine + $"Name: {job3.Name}" +
-        //        Environment.NewLine + $"Employer: {job3.EmployerName.Value}" +
-        //        Environment.NewLine + $"Location: { job3.EmployerLocation.Value}" +
-        //        Environment.NewLine + $"Position Type: {job3.JobType.Value}" +
-        //        Environment.NewLine + "Core Competency: {job3.JobCoreCompetency.Value}" +
-        //        Environment.NewLine;
+        [TestMethod]
+        public void TestToStringContainsCorrectLabelsAndData()
+        {
+            string testOutput = Environment.NewLine + $"ID: {job3.Id}" +
+                Environment.NewLine + $"Name: {job3.Name}" +
+                Environment.NewLine + $"Employer: {job3.EmployerName.Value}" +
+                Environment.NewLine + $"Location: { job3.EmployerLocation.Value}" +
+                Environment.NewLine + $"Position Type: {job3.JobType.Value}" +
+                Environment.NewLine + $"Core Competency: {job3.JobCoreCompetency.Value}" +
+                Environment.NewLine;
 
-        //    Console.WriteLine(testOutput);
-        //    Assert.AreEqual(testOutput, job3.ToString());
-        //}
+            Console.WriteLine(testOutput);
+            Assert.AreEqual(testOutput, job3.ToString());
+        }
 
 
-        //[TestMethod]
-        //public void TestToStringHandlesEmptyField()
-        //{
-        //    job3.EmployerName.Value = "";
-        //    job3.JobType.Value = "";
-        //    string testOutput = Environment.NewLine + $"ID: {job3.Id}" +
-        //        Environment.NewLine + $"Name: {job3.Name}" +
-        //        Environment.NewLine + $"Employer: Data not available" +
-        //        Environment.NewLine + $"Location: {job3.EmployerLocation.Value}" +
-        //        Environment.NewLine + $"Position Type: Data not available" +
-        //        Environment.NewLine + $"Core Competency: {job3.JobCoreCompetency.Value}" +
-        //        Environment.NewLine;
+        [TestMethod]
+        public void TestToStringHandlesEmptyField()
+        {
+            job3.EmployerName.Value = "";
+            job3.JobType.Value = "";
+            string testOutput = Environment.NewLine + $"ID: {job3.Id}" +
+                Environment.NewLine + $"Name: {job3.Name}" +
+                Environment.NewLine + $"Employer: Data not available" +
+                Environment.NewLine + $"Location: {job3.EmployerLocation.Value}" +
+                Environment.NewLine + $"Position Type: Data not available" +
+                Environment.NewLine + $"Core Competency: {job3.JobCoreCompetency.Value}" +
+                Environment.NewLine;
 
-        //    Console.WriteLine(testOutput);
-        //    Assert.AreEqual(testOutput, job3.ToString());
-        //}
+            Console.WriteLine(testOutput);
+            Assert.AreEqual(testOutput, job3.ToString());
+        }
 
     }
 }

@@ -6,6 +6,8 @@ using System.Reflection;
 using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TechJobsTests;
+using Moq;
+
 
 namespace TechJobsOOTests
 {
@@ -14,41 +16,37 @@ namespace TechJobsOOTests
     [TestClass]
     public class TestTask4
     {
-        
-        Type testType = typeof(JobTests);
+
        
+
 
         [TestMethod] //1
-        public void Test_For_TestSettingJobId()
+        public void Test_TestSettingJobIdExists()
         {
-            Type testType = typeof(TestSettingJobId);
+            //setup
+            Type testType = typeof(JobTests);
             MemberInfo[] memberInfos = testType.GetMembers();
 
-            string nameCheck = "TestSettingJobIdTest";
-            
-            //this is using a separate unit test class to see if we can isolate the assert
-            //maybe?
+            string nameCheck = "TestSettingJobId";
+            string existsCheck = "";
 
-            for(int i = 0; i < memberInfos.Length; i++)
-            { 
-                if (memberInfos[i].Name == nameCheck)
+            foreach (var mCheck in memberInfos)
+            {
+                if (mCheck.Name == nameCheck)
                 {
-                    string memberList = memberInfos[i].ToString();
-                    Console.WriteLine(memberList);
-                    //break;
-                }
-                for (int j = 0; j < memberInfos.Length; j++)
-                {
-                    string memberType = (memberInfos[i].MemberType.ToString());
-                    Console.WriteLine(memberType);
+                    existsCheck += "true";
+                    break;
                 }
             }
+
+            //verify test was created
+            Assert.AreEqual("true", existsCheck, "'TestSettingJobId' not created");
+
         }
 
-       
 
         [TestMethod] 
-        public void TestJobConstructorSetsAllFields()
+        public void Test_TestJobConstructorSetsAllFields()
         {
             Type testType = typeof(JobTests);
             MemberInfo[] memberInfos = testType.GetMembers();
@@ -68,10 +66,25 @@ namespace TechJobsOOTests
             Assert.AreEqual("true", existsCheck, "'TestJobConstructorSetsAllFields' created");
 
         }
+        [TestMethod]
+        public void Test_JobConstructor_ForAllFields_Mocked()
+        {
+            
+            Mock<JobTests> mockedTests = new Mock<JobTests>();
+            mockedTests.Setup(a => a.TestJobConstructorSetsAllFields());
+            mockedTests.Verify(v => v.TestJobConstructorSetsAllFields(), Times.AtLeast(2));
 
+            //error:
+                //Test method TechJobsOOTests.TestTask4.Test_JobConstructor_ForAllFields_Mocked threw exception: 
+                //System.NotSupportedException: Unsupported expression: a => a.TestJobConstructorSetsAllFields()
+                //Non - overridable members(here: JobTests.TestJobConstructorSetsAllFields) may not be used in setup / verification expressions.
+
+            //maybe this will help? https://docs.microsoft.com/en-us/visualstudio/msbuild/tutorial-test-custom-task?view=vs-2022
+
+        }
 
         [TestMethod] 
-        public void TestJobsForEquality()
+        public void Test_TestJobsForEquality()
         {
             Type testType = typeof(JobTests);
             MemberInfo[] memberInfos = testType.GetMembers();
@@ -94,7 +107,7 @@ namespace TechJobsOOTests
         }
 
         [TestMethod] 
-        public void TestToStringStartsAndEndsWithNewLine()
+        public void Test_TestToStringStartsAndEndsWithNewLine()
         {
             Type testType = typeof(JobTests);
             MemberInfo[] memberInfos = testType.GetMembers();
@@ -117,7 +130,7 @@ namespace TechJobsOOTests
         }
 
         [TestMethod] 
-        public void TestToStringContainsCorrectLabelsAndData()
+        public void Test_TestToStringContainsCorrectLabelsAndData()
         {
             Type testType = typeof(JobTests);
             MemberInfo[] memberInfos = testType.GetMembers();
@@ -139,7 +152,7 @@ namespace TechJobsOOTests
         }
 
         [TestMethod]
-        public void TestToStringHandlesEmptyField()
+        public void Test_TestToStringHandlesEmptyField()
         {
             Type testType = typeof(JobTests);
             MemberInfo[] memberInfos = testType.GetMembers();
