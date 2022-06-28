@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace TechJobsOOTests
 {
-    // These tests are only for items contained in Task 2.
+    // Testing how students setup the Location, CoreCompetency, and PositionType classes.
 
     [TestClass]
     public class TestTask2
@@ -20,7 +20,7 @@ namespace TechJobsOOTests
             Type locType = typeof(Location);
             ConstructorInfo[] constructorInfos = locType.GetConstructors();
             List<string> conNames = new List<string>();
-            string nameCheck = "No Arg Constructor";
+            string nameCheck = "Second Constructor";
             string existsCheck = "";
 
             foreach (var name in constructorInfos)
@@ -31,15 +31,15 @@ namespace TechJobsOOTests
 
             foreach (string name in conNames)
             {
-                if (name.Equals("Void .ctor()"))
+                if (name.Equals("Void .ctor(System.String)"))
                 {
-                    existsCheck += "No Arg Constructor";
+                    existsCheck += "Second Constructor";
                     break;
                 }
             }
 
             //verify
-            Assert.AreEqual(existsCheck, nameCheck, "No Argument Constructor exists");
+            Assert.AreEqual(existsCheck, nameCheck, "No Second Constructor exists");
         }
 
         [TestMethod] //2

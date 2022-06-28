@@ -19,8 +19,8 @@ namespace TechJobsOOTests
 
        
 
-
-        [TestMethod] //1
+        //Done
+        [TestMethod]
         public void Test_TestSettingJobIdExists()
         {
             //setup
@@ -42,9 +42,11 @@ namespace TechJobsOOTests
             //verify test was created
             Assert.AreEqual("true", existsCheck, "'TestSettingJobId' not created");
 
+
+            //need to make sure this name is in the textbook
         }
 
-
+        
         [TestMethod] 
         public void Test_TestJobConstructorSetsAllFields()
         {
@@ -65,6 +67,10 @@ namespace TechJobsOOTests
             //verify test was created
             Assert.AreEqual("true", existsCheck, "'TestJobConstructorSetsAllFields' created");
 
+            //this should test the students' test and not the code.
+            //could we compare output?  would have to provide a specific test example
+            //use a textfile???  
+
         }
         [TestMethod]
         public void Test_JobConstructor_ForAllFields_Mocked()
@@ -83,7 +89,7 @@ namespace TechJobsOOTests
 
         }
 
-        [TestMethod] 
+        [TestMethod]
         public void Test_TestJobsForEquality()
         {
             Type testType = typeof(JobTests);
@@ -104,6 +110,7 @@ namespace TechJobsOOTests
             //verify test was created
             Assert.AreEqual("true", existsCheck, "'TestJobsForEquality' created");
 
+            //again, would a text file work here?
         }
 
         [TestMethod] 
@@ -126,6 +133,8 @@ namespace TechJobsOOTests
             }
             //verify test was created
             Assert.AreEqual("true", existsCheck, "'TestToStringStartsAndEndsWithNewLine' created");
+
+            //again, i think a text file will be best?
 
         }
 
@@ -175,3 +184,8 @@ namespace TechJobsOOTests
 
     }
 }
+
+
+//how can i use a text file for output in unit tests?
+//expect and acutal outputs?  compare each?
+// maybe?  
