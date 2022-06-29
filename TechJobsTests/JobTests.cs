@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Reflection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TechJobsOO;
 
@@ -8,23 +10,17 @@ namespace TechJobsTests
     public class JobTests
 
     {
-        Job job1;
-        Job job2;
-        Job job3;
-        Job job4;
+        //Testing objects
+           TechJob job1 = new TechJob();
+           TechJob job2 = new TechJob();
+           TechJob job3 = new TechJob("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+           TechJob job4 = new TechJob("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+    
+        //task 4 -----
+            //there are tests in task 4
 
 
-        [TestInitialize]
-        public void CreateJobObjects()
-        {
-            job1 = new Job();
-            job2 = new Job();
-            job3 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
-            job4 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
-        }
-
-
-        [TestMethod]
+        [TestMethod] //1
         public void TestSettingJobId()
         {
             Assert.IsTrue(job1.Id != job2.Id);
@@ -33,7 +29,7 @@ namespace TechJobsTests
         }
 
 
-        [TestMethod]
+        [TestMethod]  //2
         public void TestJobConstructorSetsAllFields()
         {
             Assert.IsTrue(job3.Name == "Product tester");
@@ -44,16 +40,17 @@ namespace TechJobsTests
         }
 
 
-        [TestMethod]
+        [TestMethod]  //3
         public void TestJobsForEquality()
         {
-            Assert.IsFalse(job3.Equals(job4));
+            Assert.AreNotEqual(job3, job4);
         }
 
 
-
         // task 5 ------------
-        [TestMethod]
+            //there are 3 tests for task 5
+
+        [TestMethod]  //1
         public void TestToStringStartsAndEndsWithNewLine()
         {
             string testString = job3.ToString();
@@ -63,7 +60,7 @@ namespace TechJobsTests
         }
 
 
-        [TestMethod]
+        [TestMethod]  //2
         public void TestToStringContainsCorrectLabelsAndData()
         {
             string testOutput = Environment.NewLine + $"ID: {job3.Id}" +
@@ -79,14 +76,14 @@ namespace TechJobsTests
         }
 
 
-        [TestMethod]
+        [TestMethod]  //3
         public void TestToStringHandlesEmptyField()
         {
             job3.EmployerName.Value = "";
             job3.JobType.Value = "";
             string testOutput = Environment.NewLine + $"ID: {job3.Id}" +
                 Environment.NewLine + $"Name: {job3.Name}" +
-                Environment.NewLine + $"Employer: Data not available" +
+                Environment.NewLine + $"Employer: Data not available" +  
                 Environment.NewLine + $"Location: {job3.EmployerLocation.Value}" +
                 Environment.NewLine + $"Position Type: Data not available" +
                 Environment.NewLine + $"Core Competency: {job3.JobCoreCompetency.Value}" +

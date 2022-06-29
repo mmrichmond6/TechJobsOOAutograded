@@ -1,7 +1,7 @@
 ﻿using System;
 namespace TechJobsOO
 {
-    public class Job
+    public class TechJob
     {
         public int Id { get; }
         private static int nextId = 1;
@@ -14,13 +14,13 @@ namespace TechJobsOO
 
         // TODO: Add the two necessary constructors.
 
-        public Job()
+        public TechJob()
         {
             Id = nextId;
             nextId++;
         }
 
-        public Job(string name, Employer employerName, Location employerLocation, PositionType jobType, CoreCompetency jobCoreCompetency) : this()
+        public TechJob(string name, Employer employerName, Location employerLocation, PositionType jobType, CoreCompetency jobCoreCompetency) : this()
         {
             Name = name;
             EmployerName = employerName;
@@ -32,7 +32,7 @@ namespace TechJobsOO
 
         public override bool Equals(object obj)
         {
-            return obj is Job job &&
+            return obj is TechJob job &&
                    Id == job.Id;
         }
 
@@ -69,7 +69,13 @@ namespace TechJobsOO
                 JobCoreCompetency.Value = "Data not available";
             }
 
-            string output = Environment.NewLine +  $"ID: {Id}" + Environment.NewLine +$"Name: {Name}" + Environment.NewLine + $"Employer: {EmployerName.Value}" + Environment.NewLine + $"Location: {EmployerLocation.Value}" + Environment.NewLine + $"Position Type: {JobType.Value}" + Environment.NewLine + $"Core Competency: {JobCoreCompetency.Value}" + Environment.NewLine;
+            string output = Environment.NewLine +
+                $"ID: {Id}" + Environment.NewLine +$"Name: {Name}" +
+                Environment.NewLine + $"Employer: {EmployerName.Value}" +
+                Environment.NewLine + $"Location: {EmployerLocation.Value}" +
+                Environment.NewLine + $"Position Type: {JobType.Value}" +
+                Environment.NewLine + $"Core Competency: {JobCoreCompetency.Value}" +
+                Environment.NewLine;
             return output;
         }
 

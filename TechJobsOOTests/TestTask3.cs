@@ -12,7 +12,7 @@ namespace TechJobsOOTests
         [TestMethod]    //1
         public void Test_JobClass_Has_No_Arg_Constructor() 
         {
-            Type jobType = typeof(Job);
+            Type jobType = typeof(TechJob);
             ConstructorInfo[] constructorInfos = jobType.GetConstructors();
             List<string> conNames = new List<string>();
             string nameCheck = "No Arg Constructor";
@@ -40,8 +40,8 @@ namespace TechJobsOOTests
         [TestMethod] //2
         public void Test_No_Arg_Constructor_Sets_Unique_Id()
         {
-            Job testJob1 = new Job();
-            Job testJob2 = new Job();
+            TechJob testJob1 = new TechJob();
+            TechJob testJob2 = new TechJob();
 
             Assert.AreNotEqual(testJob1, testJob2, "Unique Id Test");
             Assert.AreEqual(testJob2, testJob2, "Should have same Id");
@@ -51,7 +51,7 @@ namespace TechJobsOOTests
         public void Test_JobClass_Has_Second_Constructror()
         {
             //setup
-            Type jobType = typeof(Job);
+            Type jobType = typeof(TechJob);
             ConstructorInfo[] constructorInfos = jobType.GetConstructors();
             List<string> conNames = new List<string>();
             string nameCheck = "Second Constructor";
@@ -79,8 +79,8 @@ namespace TechJobsOOTests
         public void Test_JobClass_Has_Accessors()
         {
             //setup
-            Job testJob1 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
-            Job testJob2 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+            TechJob testJob1 = new TechJob("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+            TechJob testJob2 = new TechJob("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
 
             //verify 
             Assert.AreEqual(testJob1.Name,  "Product tester", "Testing Job Name");
@@ -96,10 +96,10 @@ namespace TechJobsOOTests
         public void Test_Equals_Method_Setup()
         {
             //setup
-            Job testJob1 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
-            Job testJob2 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+            TechJob testJob1 = new TechJob("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+            TechJob testJob2 = new TechJob("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
 
-            MethodInfo mInfo = typeof(Job).GetMethod("Equals");
+            MethodInfo mInfo = typeof(TechJob).GetMethod("Equals");
             MethodBody mBody = mInfo.GetMethodBody();
 
             int lviCount = mBody.LocalVariables.Count;
@@ -120,10 +120,10 @@ namespace TechJobsOOTests
         public void Test_GetHashCode_Setup()
         {
             //setup
-            Job testJob1 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
-            Job testJob2 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+            TechJob testJob1 = new TechJob("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+            TechJob testJob2 = new TechJob("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
 
-            MethodInfo mInfo = typeof(Job).GetMethod("GetHashCode");
+            MethodInfo mInfo = typeof(TechJob).GetMethod("GetHashCode");
             MethodBody mBody = mInfo.GetMethodBody();
             int localCount = mBody.LocalVariables.Count;
 
