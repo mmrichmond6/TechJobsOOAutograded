@@ -51,6 +51,7 @@ namespace TechJobsOOTests
         [TestMethod]
         public void Test_TestToString_Starts_And_Ends_With_NewLine()
         {
+            //setup
             //comparing output to a text file.  id numbers may get a little wonky
             string text = System.IO.File.ReadAllText("StartsAndEndsWithNewLine.txt").ToString();
 
@@ -62,7 +63,8 @@ namespace TechJobsOOTests
 
             var output = stringWriter.ToString();
 
-           Assert.AreEqual(text, output, "Not Working");
+            //verify
+           Assert.AreEqual(text, output, "New Line issue");
         }
 
 
@@ -95,6 +97,7 @@ namespace TechJobsOOTests
         [TestMethod]
         public void Test_TestToStringContainsCorrectLabelsAndData()
         {
+            //setup
             var stringWriter = new StringWriter();
             Console.SetOut(stringWriter);
 
@@ -102,6 +105,8 @@ namespace TechJobsOOTests
             techJobs.RunProgram();
 
             var output = stringWriter.ToString();
+
+            //verify
 
             //this one feels less "hard coded"  but not sure if it is the best test?  Does it give too much away?
             Assert.IsTrue(output.Contains($"Name: {job1.Name}") && output.Contains($"Employer: {job1.EmployerName}") && output.Contains($"Location: {job1.EmployerLocation}") && output.Contains($"Position Type: {job1.JobType}") && output.Contains($"Core Competency: {job1.JobCoreCompetency}"));
@@ -139,6 +144,7 @@ namespace TechJobsOOTests
         [TestMethod]
         public void Test_TestToStringHandlesEmptyField()
         {
+            //setup
             var stringWriter = new StringWriter();
             Console.SetOut(stringWriter);
 
@@ -147,6 +153,7 @@ namespace TechJobsOOTests
 
             var output = stringWriter.ToString();
 
+            //verify
             Assert.IsTrue(output.Contains($"Name: {job3.Name}"), "Correct label and value for Name");
             Assert.IsTrue(output.Contains($"Employer: {job3.EmployerName}"), "Incorrect label and value for Employer Name");
             Assert.IsTrue(output.Contains($"Location: {job3.EmployerLocation}"), "Incorrect label and value for Location");
