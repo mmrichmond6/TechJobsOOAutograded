@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Text;
@@ -13,16 +14,17 @@ namespace TechJobsOOTests
     public class TestTask5
     {
         //Task 5 Tests used to verify that students are testing their custom ToString method
-        // and that the method works
+        //Some of the tests are used to verify that the test exists -- will need to add notes to the textbook about this
+        //Others test functionality of ToString method -- will need to add notes about what to do with the empty string
 
         TechJob job1 = new TechJob("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
         TechJob job2 = new TechJob("Web Developer", new Employer("LaunchCode"), new Location("St. Louis"), new PositionType("Front-end developer"), new CoreCompetency("JavaScript"));
         TechJob job3 = new TechJob("Ice cream tester", new Employer(""), new Location("Home"), new PositionType("UX"), new CoreCompetency("Tasting ability"));
 
         [TestMethod]
-        public void TestToStringStartsAndEndsWithNewLine_Test()
+        public void TestToStringStartsAndEndsWithNewLineExists()
         {
-            //test to verify that TestToStringStartsAndEndsWithNewLine exisits
+            //test to verify that TestToStringStartsAndEndsWithNewLine exisits 
 
             //setup
             Type testType = typeof(JobTests);
@@ -47,37 +49,26 @@ namespace TechJobsOOTests
 
 
         [TestMethod]
-        public void TestToString_Starts_And_Ends_With_NewLine()
+        public void Test_TestToString_Starts_And_Ends_With_NewLine()
         {
-            TechJobs techJobs = new TechJobs();
-                techJobs.RunProgram();
-            
-            var studentBuilder = new StringBuilder();
-            studentBuilder.Append(techJobs);
+            //comparing output to a text file.  id numbers may get a little wonky
+            string text = System.IO.File.ReadAllText("StartsAndEndsWithNewLine.txt").ToString();
 
             var stringWriter = new StringWriter();
             Console.SetOut(stringWriter);
-           
 
-            //this part is working -- not sure its the best way
-            var stringBuilder = new StringBuilder();
-                stringBuilder.Append(Environment.NewLine + "1" + Environment.NewLine + "Product tester" + Environment.NewLine + "ACME" + Environment.NewLine + "Desert" + Environment.NewLine + "Quality control" + Environment.NewLine + "Persistence" + Environment.NewLine +
-                                     Environment.NewLine + "2" + Environment.NewLine + "Web Developer" + Environment.NewLine + "LaunchCode" + Environment.NewLine + "St. Louis" + Environment.NewLine + "Front-end developer" + Environment.NewLine + "JavaScript" + Environment.NewLine +
-                                     Environment.NewLine + "3" + Environment.NewLine + "Ice cream tester" + Environment.NewLine + "" + Environment.NewLine + "Home" + Environment.NewLine + "UX" + Environment.NewLine + "Tasting ability" + Environment.NewLine);
+            var techJobs = new TechJobs();
+            techJobs.RunProgram();
 
             var output = stringWriter.ToString();
 
-            Assert.AreEqual(stringBuilder, output, "Not Working");
-
-            //I would like to try to compare outputs for this test so that my test doesn't give away the solution to the students
-            //not sure the best way to do this.  will need to update the program/TechJobs files to make this work.
+           Assert.AreEqual(text, output, "Not Working");
         }
 
 
 
-
         [TestMethod]
-        public void TestToStringContainsCorrectLabelsAndData_Test()
+        public void TestToStringContainsCorrectLabelsAndData_Exists()
         {
             //test to verify that TestToStringContainsCorrectLabelsAndData exisits
 
@@ -99,11 +90,28 @@ namespace TechJobsOOTests
 
             //verify test was created
             Assert.AreEqual("true", existsCheck, "'TestToStringContainsCorrectLabelsAndData' not created");
-
         }
 
         [TestMethod]
-        public void TestToStringHandlesEmptyField_Test()
+        public void Test_TestToStringContainsCorrectLabelsAndData()
+        {
+            var stringWriter = new StringWriter();
+            Console.SetOut(stringWriter);
+
+            var techJobs = new TechJobs();
+            techJobs.RunProgram();
+
+            var output = stringWriter.ToString();
+
+            //this one feels less "hard coded"  but not sure if it is the best test?  Does it give too much away?
+            Assert.IsTrue(output.Contains($"Name: {job1.Name}") && output.Contains($"Employer: {job1.EmployerName}") && output.Contains($"Location: {job1.EmployerLocation}") && output.Contains($"Position Type: {job1.JobType}") && output.Contains($"Core Competency: {job1.JobCoreCompetency}"));
+
+            //this one is very hard coded but perhaps it is better?
+            Assert.IsTrue(output.Contains($"Name: Product tester") && output.Contains("Employer: ACME") && output.Contains("Location: Desert") && output.Contains("Position Type: Quality control") && output.Contains("Core Competency: Persistence"));
+        }
+
+        [TestMethod]
+        public void TestToStringHandlesEmptyField_Exists()
         {
             ////test to verify that TestToStringHandlesEmptyField exisits
 
@@ -128,10 +136,25 @@ namespace TechJobsOOTests
 
         }
 
+        [TestMethod]
+        public void Test_TestToStringHandlesEmptyField()
+        {
+            var stringWriter = new StringWriter();
+            Console.SetOut(stringWriter);
 
+            var techJobs = new TechJobs();
+            techJobs.RunProgram();
 
+            var output = stringWriter.ToString();
 
+            Assert.IsTrue(output.Contains($"Name: {job3.Name}"), "Correct label and value for Name");
+            Assert.IsTrue(output.Contains($"Employer: {job3.EmployerName}"), "Incorrect label and value for Employer Name");
+            Assert.IsTrue(output.Contains($"Location: {job3.EmployerLocation}"), "Incorrect label and value for Location");
+            Assert.IsTrue(output.Contains($"Position Type: {job3.JobType}"), "Incorrect label and value for Position Type");
+            Assert.IsTrue(output.Contains($"Core Competency: {job3.JobCoreCompetency}"), "Incorrect label and value for Core Competency");
 
+          //As with Test_TestToStringContainsCorrectLabelsAndData, Is this the best test?  Or does it give too much away?
 
+        }
     }
 }

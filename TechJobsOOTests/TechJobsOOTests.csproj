@@ -22,5 +22,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Remove="Moq" />
+    <None Remove="StartsAndEndsWithNewLine.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="StartsAndEndsWithNewLine.txt" />
   </ItemGroup>
 </Project>
