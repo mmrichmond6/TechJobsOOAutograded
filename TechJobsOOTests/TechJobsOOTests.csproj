@@ -17,7 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TechJobsOOAutograded\TechJobsOOAutograded.csproj" />
     <ProjectReference Include="..\TechJobsTests\TechJobsTests.csproj" />
   </ItemGroup>
   <ItemGroup>
