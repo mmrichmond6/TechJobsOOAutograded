@@ -6,11 +6,10 @@ using TechJobsTests;
 
 namespace TechJobsOOTests
 {
-    //Task 4 Tests to verify if the tests were created by students
-    //but not able to check inside each test at this point.
-    //Going to leave this for now and move on to task 5
+    //Task 4 Tests to verify students' unit tests.  Tests are numbered.
 
-    [TestClass]
+
+    [TestClass] //1
     public class TestTask4
     {
         [TestMethod]
@@ -37,7 +36,7 @@ namespace TechJobsOOTests
         }
 
 
-        [TestMethod]
+        [TestMethod] //2
         public void Test_TestJobConstructorSetsAllFields()
         {
             Type testType = typeof(JobTests);
@@ -60,7 +59,7 @@ namespace TechJobsOOTests
         }
 
 
-        [TestMethod]
+        [TestMethod] //3
         public void Test_TestJobsForEquality()
         {
             Type testType = typeof(JobTests);
@@ -82,7 +81,8 @@ namespace TechJobsOOTests
             Assert.AreEqual("true", existsCheck, "'TestJobsForEquality' not found");
         }
 
-        [TestMethod] 
+
+        [TestMethod] //4
         public void Test_TestToStringStartsAndEndsWithNewLine()
         {
             Type testType = typeof(JobTests);
@@ -104,7 +104,8 @@ namespace TechJobsOOTests
             Assert.AreEqual("true", existsCheck, "'TestToStringStartsAndEndsWithNewLine' not found");
         }
 
-        [TestMethod] 
+
+        [TestMethod] //5
         public void Test_TestToStringContainsCorrectLabelsAndData()
         {
             Type testType = typeof(JobTests);
@@ -126,7 +127,8 @@ namespace TechJobsOOTests
             Assert.AreEqual("true", existsCheck, "'TestToStringContainsCorrectLabelsAndData' not found");
         }
 
-        [TestMethod]
+
+        [TestMethod] //6
         public void Test_TestToStringHandlesEmptyField()
         {
             Type testType = typeof(JobTests);

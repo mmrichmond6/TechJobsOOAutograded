@@ -9,6 +9,8 @@ namespace TechJobsOOTests
     [TestClass]
     public class TestTask3
     {
+        //Testing the new Job class.  Tests are numbered.
+
         [TestMethod]    //1
         public void Test_JobClass_Has_No_Arg_Constructor() 
         {
@@ -37,6 +39,7 @@ namespace TechJobsOOTests
             Assert.AreEqual(existsCheck, nameCheck, "No Argument Constructor exists");
         }
 
+
         [TestMethod] //2
         public void Test_No_Arg_Constructor_Sets_Unique_Id()
         {
@@ -46,6 +49,7 @@ namespace TechJobsOOTests
             Assert.AreNotEqual(testJob1, testJob2, "Unique Id Test");
             Assert.AreEqual(testJob2, testJob2, "Should have same Id");
         }
+
 
         [TestMethod]  //3
         public void Test_JobClass_Has_Second_Constructror()
@@ -74,6 +78,7 @@ namespace TechJobsOOTests
             //verify
             Assert.AreEqual(existsCheck, nameCheck, "Second Constructor Test");
         }
+
 
         [TestMethod] //4
         public void Test_JobClass_Has_Accessors()

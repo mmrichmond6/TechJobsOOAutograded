@@ -42,41 +42,34 @@ namespace TechJobsOOTests
             Assert.AreEqual(existsCheck, nameCheck, "No Second Constructor exists");
         }
 
+
         [TestMethod] //2
-        public void Test_No_Arg_Constructor_Sets_Unique_Id()
-        {
-            Location testlocation1 = new Location();
-            Location testlocation2 = new Location();
-
-            Assert.AreNotEqual(testlocation1, testlocation2, "Unique Id Test");
-            Assert.AreEqual(testlocation1, testlocation1, "Should have same Id");
-        }
-
-        [TestMethod] //3
         public void Test_Second_Location_Constructor_Initializes_Value()
         {
             //setup
             Location testLocation = new Location("Desert");
-            Location testLocation2 = new Location("St. Louis");
 
             //verify
             Assert.AreEqual("Desert", testLocation.Value, "Is Value set at time of declaration?");
-            Assert.AreEqual("St. Louis", testLocation.Value = "St. Louis", "Able to update value?");
+            Assert.AreEqual("St. Louis", testLocation.Value = "St. Louis", "Not able to update value");
         }
 
-        [TestMethod] //4
+
+        [TestMethod] //3
         public void Test_Second_Location_Constructor_Initializes_Id()
         {
             //setup
             Location testLocation = new Location("Desert");
+            Console.WriteLine(testLocation.Id);
 
             //verify
-            Assert.AreEqual(5, testLocation.Id, "Second constructor able to update Id");
-            Assert.IsNotNull(testLocation.Id, "Second constructor passes value to Id");
+            Assert.AreEqual(2, testLocation.Id, "Second constructor not able to update Id");
+            Assert.IsFalse(testLocation.Id == 4, "Second constructor passes value to Id. Is this desirable?");
         }
 
+        // Testing CoreCompetency --------------------------------------------------------
 
-        [TestMethod] //5
+        [TestMethod] //4
         public void Test_CoreCompetency_Accessor_SetUp()
         {
             //setup
@@ -97,17 +90,13 @@ namespace TechJobsOOTests
                 }
             }
 
-            //verify able to set value
-            Assert.AreEqual("Persistence", testComp.Value, "CoreComp has set-able Value");
-
             //verify
-            Assert.AreEqual("true", existsCheck, "CoreComp getter exists");
-
-            //verify
-            Assert.AreNotEqual(testComp.Id, testComp2.Id, "able to get ids for CoreComp objects");
+            Assert.AreEqual("Persistence", testComp.Value, "CoreComp has no set-able Value");
+            Assert.AreEqual("true", existsCheck, "CoreComp getter does not exist");
+            Assert.AreNotEqual(testComp.Id, testComp2.Id, "Not able to get ids for CoreComp objects");
         }
 
-        [TestMethod] //6
+        [TestMethod] //5
         public void Test_CoreCompetency_Has_No_Id_Setter_SetUp()
         {
             Type ccType = typeof(CoreCompetency);
@@ -123,11 +112,14 @@ namespace TechJobsOOTests
                     break;
                 }
             }
+
             //verify
             Assert.AreEqual("false", existsCheck, "CoreComp should not have a setter");
         }
 
-        [TestMethod] //7
+        // Testing PositionType --------------------------------------------------------
+
+        [TestMethod] //6
         public void Test_PositionType_Equals_Method_SetUp()
         {
             // set up
@@ -146,10 +138,12 @@ namespace TechJobsOOTests
             Assert.AreEqual(lviCount, 2, "Equals method has 2 local variables");
 
             //verify output
-            Assert.AreEqual(testPosition, testPosition, "Objects with Same ID are Equal");
-            Assert.AreNotEqual(testPosition, testPosition2, "Objects with different ID not Equal");
+            Assert.AreEqual(testPosition, testPosition, "Objects with Same ID are not Equal");
+            Assert.AreNotEqual(testPosition, testPosition2, "Objects with different ID Equal?");
         }
-        [TestMethod] //8
+
+
+        [TestMethod] //7
         public void Test_PositionType_HashCode_SetUp()
         {
             // set up
@@ -161,14 +155,14 @@ namespace TechJobsOOTests
             int localCount = mBody.LocalVariables.Count;
 
             //verify setup
-            Assert.IsTrue(localCount > 0, "GetHashCode method setup");
+            Assert.IsTrue(localCount > 0, "No GetHashCode method setup");
 
             //verify output
-            Assert.AreNotEqual(testPosition.GetHashCode(), testPosition2.GetHashCode(), "GetHashCode output test");
+            Assert.AreNotEqual(testPosition.GetHashCode(), testPosition2.GetHashCode(), "GetHashCode output test failed");
         }
 
 
-        [TestMethod] //9
+        [TestMethod] //8
         public void Test_PositionType_ToString_SetUp()
         {
             //setup
@@ -179,22 +173,11 @@ namespace TechJobsOOTests
             int localCount = mBody.LocalVariables.Count;
 
             //verify setup
-            Assert.IsTrue(localCount > 0, "ToString method set up with at least 1 local variable");
+            Assert.IsTrue(localCount > 0, "ToString method has no local variables");
 
             //verify output
-            Assert.AreEqual(testPosition.Value.ToString(), "Quality Control", "ToString returns same output as set value");
+            Assert.AreEqual(testPosition.Value.ToString(), "Quality Control", "ToString does not return same output as set value");
         }
     }
 }
-
-
-/*
- * DUMMY CLASS FOR TESTING(See Job 1 in Program file)
-    * Id
-    * Job Name: Product tester
-    * Employer: ACME
-    * Location: Desert
-    * PositionType: Quality control
-    * CoreCompetency: Persistence
- */
 

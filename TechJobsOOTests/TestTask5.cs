@@ -13,15 +13,10 @@ namespace TechJobsOOTests
     [TestClass]
     public class TestTask5
     {
-        //Task 5 Tests used to verify that students are testing their custom ToString method
-        //Some of the tests are used to verify that the test exists -- will need to add notes to the textbook about this
-        //Others test functionality of ToString method -- will need to add notes about what to do with the empty string
+        //Task 5 Tests used to verify that students are testing their custom ToString method.  Uses jobs from the TechJobs class.  Tests are numbered.
 
-        TechJob job1 = new TechJob("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
-        TechJob job2 = new TechJob("Web Developer", new Employer("LaunchCode"), new Location("St. Louis"), new PositionType("Front-end developer"), new CoreCompetency("JavaScript"));
-        TechJob job3 = new TechJob("Ice cream tester", new Employer(""), new Location("Home"), new PositionType("UX"), new CoreCompetency("Tasting ability"));
-
-        [TestMethod]
+        
+        [TestMethod]  //1
         public void TestToStringStartsAndEndsWithNewLineExists()
         {
             //test to verify that TestToStringStartsAndEndsWithNewLine exisits 
@@ -48,7 +43,7 @@ namespace TechJobsOOTests
         }
 
 
-        [TestMethod]
+        [TestMethod]  //2
         public void Test_TestToString_Starts_And_Ends_With_NewLine()
         {
             //setup
@@ -69,7 +64,7 @@ namespace TechJobsOOTests
 
 
 
-        [TestMethod]
+        [TestMethod]  //3
         public void TestToStringContainsCorrectLabelsAndData_Exists()
         {
             //test to verify that TestToStringContainsCorrectLabelsAndData exisits
@@ -94,7 +89,8 @@ namespace TechJobsOOTests
             Assert.AreEqual("true", existsCheck, "'TestToStringContainsCorrectLabelsAndData' not created");
         }
 
-        [TestMethod]
+
+        [TestMethod]  //4
         public void Test_TestToStringContainsCorrectLabelsAndData()
         {
             //setup
@@ -107,15 +103,12 @@ namespace TechJobsOOTests
             var output = stringWriter.ToString();
 
             //verify
-
-            //this one feels less "hard coded"  but not sure if it is the best test?  Does it give too much away?
-            Assert.IsTrue(output.Contains($"Name: {job1.Name}") && output.Contains($"Employer: {job1.EmployerName}") && output.Contains($"Location: {job1.EmployerLocation}") && output.Contains($"Position Type: {job1.JobType}") && output.Contains($"Core Competency: {job1.JobCoreCompetency}"));
-
-            //this one is very hard coded but perhaps it is better?
+            //this one is very hard coded but it doesn't give away the solution?
             Assert.IsTrue(output.Contains($"Name: Product tester") && output.Contains("Employer: ACME") && output.Contains("Location: Desert") && output.Contains("Position Type: Quality control") && output.Contains("Core Competency: Persistence"));
         }
 
-        [TestMethod]
+
+        [TestMethod] //5
         public void TestToStringHandlesEmptyField_Exists()
         {
             ////test to verify that TestToStringHandlesEmptyField exisits
@@ -141,10 +134,14 @@ namespace TechJobsOOTests
 
         }
 
-        [TestMethod]
+
+        [TestMethod] //6
         public void Test_TestToStringHandlesEmptyField()
         {
             //setup
+
+            TechJob job3 = new TechJob("Ice cream tester", new Employer(""), new Location("Home"), new PositionType("UX"), new CoreCompetency("Tasting ability"));
+
             var stringWriter = new StringWriter();
             Console.SetOut(stringWriter);
 
@@ -160,7 +157,8 @@ namespace TechJobsOOTests
             Assert.IsTrue(output.Contains($"Position Type: {job3.JobType}"), "Incorrect label and value for Position Type");
             Assert.IsTrue(output.Contains($"Core Competency: {job3.JobCoreCompetency}"), "Incorrect label and value for Core Competency");
 
-          //As with Test_TestToStringContainsCorrectLabelsAndData, Is this the best test?  Or does it give too much away?
+         //worried about hard coding, so i tried it this way.
+         //does this give too much away? Does it assume too much on the students?
 
         }
     }

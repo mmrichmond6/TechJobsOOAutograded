@@ -12,9 +12,6 @@ namespace TechJobsOO
             TechJobs techJobs = new TechJobs();
             techJobs.RunProgram();
 
-
-
-            
         }
     }
 }
