@@ -139,9 +139,9 @@ namespace TechJobsOOTests
         [TestMethod] //6
         public void Test_TestToStringHandlesEmptyField()
         {
-            //setup
-
-            TechJob job3 = new TechJob("Ice cream tester", new Employer(""), new Location("Home"), new PositionType("UX"), new CoreCompetency("Tasting ability"));
+                        //setup
+            //comparing output to a text file.  id numbers may get a little wonky
+            string text = System.IO.File.ReadAllText("EmptyFieldTest.txt").ToString();
 
             var stringWriter = new StringWriter();
             Console.SetOut(stringWriter);
@@ -152,15 +152,7 @@ namespace TechJobsOOTests
             var output = stringWriter.ToString();
 
             //verify
-            Assert.IsTrue(output.Contains($"Name: {job3.Name}"), "Correct label and value for Name");
-            Assert.IsTrue(output.Contains($"Employer: {job3.EmployerName}"), "Incorrect label and value for Employer Name");
-            Assert.IsTrue(output.Contains($"Location: {job3.EmployerLocation}"), "Incorrect label and value for Location");
-            Assert.IsTrue(output.Contains($"Position Type: {job3.JobType}"), "Incorrect label and value for Position Type");
-            Assert.IsTrue(output.Contains($"Core Competency: {job3.JobCoreCompetency}"), "Incorrect label and value for Core Competency");
-
-         //worried about hard coding, so i tried it this way.
-         //does this give too much away? Does it assume too much on the students?
-
+            Assert.AreEqual(text, output, "Empty string handling error");
         }
     }
 }
