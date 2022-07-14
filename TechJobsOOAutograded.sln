@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechJobsOOAutograded", "Tec
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechJobsOOTests", "TechJobsOOTests\TechJobsOOTests.csproj", "{6A1EFE18-5C69-4A2B-AB23-D1338AA28CE6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechJobsTest", "TechJobsTest\TechJobsTest.csproj", "{62DB0506-FC4E-4079-992A-78C570ED6B92}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{6A1EFE18-5C69-4A2B-AB23-D1338AA28CE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6A1EFE18-5C69-4A2B-AB23-D1338AA28CE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6A1EFE18-5C69-4A2B-AB23-D1338AA28CE6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62DB0506-FC4E-4079-992A-78C570ED6B92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62DB0506-FC4E-4079-992A-78C570ED6B92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62DB0506-FC4E-4079-992A-78C570ED6B92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62DB0506-FC4E-4079-992A-78C570ED6B92}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
