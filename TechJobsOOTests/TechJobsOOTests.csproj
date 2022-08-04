@@ -17,13 +17,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TechJobsTests\TechJobsTests.csproj" />
-  </ItemGroup>
-  <ItemGroup>
     <None Remove="Moq" />
     <None Remove="StartsAndEndsWithNewLine.txt" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="StartsAndEndsWithNewLine.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TechJobsTest\TechJobsTest.csproj" />
+    <ProjectReference Include="..\TechJobsOOAutograded\TechJobsOOAutograded.csproj" />
   </ItemGroup>
 </Project>
