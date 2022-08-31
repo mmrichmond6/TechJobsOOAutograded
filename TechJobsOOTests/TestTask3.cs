@@ -10,7 +10,7 @@ namespace TechJobsOOTests
     public class TestTask3
     {
         //Testing the new Job class.  Tests are numbered.
-
+        /*
         [TestMethod]    //1
         public void Test_JobClass_Has_No_Arg_Constructor() 
         {
@@ -138,6 +138,7 @@ namespace TechJobsOOTests
             //verify output
             Assert.AreNotEqual(testJob1.GetHashCode(), testJob2.GetHashCode(), "GetHashCode output test");
         }
+        */
 
     }
 }

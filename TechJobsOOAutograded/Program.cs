@@ -8,10 +8,10 @@ namespace TechJobsOO
     {
         static void Main(string[] args)
         {
-
+            /*
             TechJobs techJobs = new TechJobs();
             techJobs.RunProgram();
-
+            */
         }
     }
 }
